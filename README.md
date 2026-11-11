@@ -1,6 +1,6 @@
 # PC Store
 
-An ASP.NET Core Razor Pages ordering page for a computer shop. The customer picks a CPU and extras, chooses when and where to collect the build, and the page works out the total.
+An ASP.NET Core Razor Pages ordering page for a computer shop. The customer picks a CPU and extras, chooses when and where to collect the build, and the page works out the total. Built as a school project.
 
 | Item | Price |
 |---|---|
