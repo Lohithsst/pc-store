@@ -1,0 +1,71 @@
+﻿@page
+@model PcStore.Pages.PCStoreModel
+@{
+}
+<h1>PC Store</h1>
+<div asp-validation-summary="All"></div>
+<form method="post">
+    @{
+        var WelcomeMessage = "Welcome Customer!";
+        if (DateTime.Now.Hour >= 12)
+        {
+            WelcomeMessage += " Good Afternoon";
+        }
+        else
+        {
+            WelcomeMessage += " Good Morning";
+        }
+    }
+    <p>
+        <h2>@WelcomeMessage</h2>
+    </p>
+    <p>
+        Name: <input type="text" asp-for="ClientName" />
+        Email: <input type="text" asp-for="ClientEmail" />
+    </p>
+    <table class="table">
+        <thead>
+            <tr><th>CPU</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Intel i7</td> <td>$450.00</td></tr>
+            <tr><td>AMD Ryzen 7</td> <td>$420.00</td></tr>
+            <tr><td>Intel i5</td>  <td>$350.00</td></tr>
+        </tbody>
+    </table>
+    <p>
+        <input type="radio" asp-for="CPU" value="Intel i7" checked="checked" /> Intel i7<br />
+        <img src="Intel i7.jpeg" alt="Intel i7" /><br />
+        <br />
+        <input type="radio" asp-for="CPU" value="AMD Ryzen 7" /> AMD Ryzen 7<br />
+        <img src="AMD Ryzen 7.jpeg" alt="AMD Ryzen 7" /><br />
+        <br />
+        <input type="radio" asp-for="CPU" value="Intel i5" /> Intel i5<br />
+        <img src="Intel i5.jpeg" alt="Intel i5" /><br />
+    </p>
+    <p>
+        <input type="checkbox" asp-for="AddRAM" /> Add RAM ($95.00)<br />
+        <input type="checkbox" asp-for="AddWaterCooling" /> Water Cooling ($75.00)
+    </p>
+    <p>
+        Build Collection date/time: <input type="datetime-local" asp-for="BuildCollectionDateTime" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+    </p>
+    <p>
+        Select an outlet:
+        <select asp-for="SelectedOutlet">
+            @foreach (var c in Model.Outlets)
+            {
+                <option value=@c> @c </option>
+            }
+        </select>
+    </p>
+
+    <p>
+        <input type="submit" value="Purchase" />
+    </p>
+    <p>Client Information: @Model.ClientInfo</p>
+    <p>Build Order Information: @Model.BuildOrderInfo</p>
+    <p>Build Collection DateTime: @Model.BuildCollectionDateTime</p>
+    <p>Selected Outlet: @Model.SelectedOutlet</p>
+    <p>Total Build Cost: @Model.TotalBuildCostString</p>
+</form>
